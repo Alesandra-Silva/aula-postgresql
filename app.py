@@ -1,5 +1,4 @@
 import streamlit as st
-
 from crud import criar_aluno, listar_alunos, atualizar_idade, deletar_aluno
 #python -m streamlit run app.py
 st.set_page_config(page_title= "Gerenciamento de alunos", page_icon= "👩🏻")
@@ -15,6 +14,15 @@ if menu == "Inserir":
     if st.button("Cadastrar"):
         if nome.strip() != "":
             criar_aluno(nome, idade)
-            st.seccess(f"Aluno {nome} inserido com sucesso!")
+            st.success(f"Aluno {nome} inserido com sucesso!")
         else:
             st.warning("O campo não pode ser vazio.")
+elif menu == "Listar":
+    st.subheader("👨🏻‍🎓liListar alunos")
+    alunos = listar_alunos()
+    if alunos:
+        for linha in alunos:
+            st.write(f"ID = {linha[0]} | Nome = {linha[1]} | IDADE = {linha[2]}")
+    else:
+        st.info("Nenhum aluno encontrado!")
+    
