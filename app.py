@@ -38,3 +38,14 @@ elif menu == "Atualizar":
     else:
         st.info("Nenhum aluno disponível para atualizar")
     
+
+elif menu == "Deletar":
+    st.subheader("✖ Deletar aluno")
+    alunos = listar_alunos()
+    if alunos:
+        id_aluno = st.selectbox("Selecione um aluno para deletar ",[ linha [0] for  linha in alunos]  )
+        if st.button("Deletar"):
+           deletar_aluno(id_aluno)
+           st.success("Aluno deletado com sucesso.")
+    else:
+        st.info("Aluno não indentificado para ser exclído!")
